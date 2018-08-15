@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: snow;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+   <children>
+      <Label layoutX="37.0" layoutY="29.0" prefHeight="30.0" prefWidth="141.0" text="Zarejestruj się" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="40.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Separator layoutX="40.0" layoutY="65.0" maxWidth="-Infinity" prefHeight="5.0" prefWidth="150.0" style="-fx-background-color: firebrick;" valignment="TOP" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="70.0">
+         <cursor>
+            <Cursor fx:constant="S_RESIZE" />
+         </cursor>
+      </Separator>
+      <TextField fx:id="tf_name" layoutX="38.0" layoutY="89.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText="Imię" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="90.0" />
+      <TextField fx:id="tf_lastname" layoutX="38.0" layoutY="134.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText="Nazwisko" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="135.0" />
+      <TextField fx:id="tf_login" layoutX="38.0" layoutY="185.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText="Nazwa użytkownika" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="180.0" />
+      <TextField fx:id="tf_password" layoutX="38.0" layoutY="226.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText="Podaj hasło" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="225.0" />
+      <CheckBox fx:id="cb_approve" layoutX="38.0" layoutY="268.0" mnemonicParsing="false" onMouseClicked="#approveAction" prefHeight="53.0" prefWidth="224.0" text="Zapoznałem się i akceptuję&#10;Regulamin oraz &#10;Politykę Prywatności" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="270.0" />
+      <Button fx:id="btn_register" disable="true" layoutX="52.0" layoutY="336.0" mnemonicParsing="false" onMouseClicked="#registerAction" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: firebrick;" text="Zarejestruj" textFill="WHITE" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="340.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Separator layoutX="297.0" layoutY="20.0" orientation="VERTICAL" prefHeight="360.0" prefWidth="10.0" />
+      <Label layoutX="359.0" layoutY="40.0" prefHeight="30.0" prefWidth="141.0" text="Zaloguj" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="40.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Separator layoutX="362.0" layoutY="76.0" maxWidth="-Infinity" prefHeight="5.0" prefWidth="150.0" style="-fx-background-color: firebrick;" valignment="TOP" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="70.0">
+         <cursor>
+            <Cursor fx:constant="S_RESIZE" />
+         </cursor>
+      </Separator>
+      <TextField fx:id="tf_login_name" layoutX="340.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText="Nazwa użytkownika" />
+      <TextField fx:id="tf_login_password" layoutX="340.0" layoutY="131.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText="Hasło" visible="false" />
+      <PasswordField fx:id="pf_password" layoutX="340.0" layoutY="131.0" prefHeight="30.0" prefWidth="180.0" promptText="Podaj hasło" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="131.0" />
+      <Button fx:id="btn_login" layoutX="340.0" layoutY="180.0" mnemonicParsing="false" onMouseClicked="#loginAction" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: firebrick;" text="Zaloguj" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
