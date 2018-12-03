@@ -75,10 +75,10 @@
                      <children>
                         <TableView fx:id="tbl_badge" prefHeight="300.0" prefWidth="600.0">
                            <columns>
-                              <TableColumn fx:id="col_badge_chain" prefWidth="124.0" text="Łańcuchy górskie" />
-                              <TableColumn fx:id="col_badge_range" prefWidth="183.0" text="Pasma górskie" />
-                              <TableColumn fx:id="col_badge_peak" prefWidth="93.0" text="Liczba szczytów" />
-                              <TableColumn fx:id="col_badge_degrees" minWidth="6.0" prefWidth="199.0" text="Odznaki" />
+                              <TableColumn fx:id="col_badge_chain" prefWidth="125.0" text="Łańcuchy górskie" />
+                              <TableColumn fx:id="col_badge_range" prefWidth="180.0" text="Pasma górskie" />
+                              <TableColumn fx:id="col_badge_peak" prefWidth="94.0" text="Liczba szczytów" />
+                              <TableColumn fx:id="col_badge_degrees" prefWidth="200.0" text="Odznaki" />
                            </columns>
                         </TableView>
                         <Label layoutX="12.0" layoutY="303.0" prefHeight="39.0" prefWidth="578.0" text="* Powyższa tabela prezentuje stopnie odznak górskich, które możesz posiadać po zgłoszeniu się&#10;   do odpowiednich klubów" />
