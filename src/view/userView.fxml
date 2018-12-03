@@ -56,8 +56,8 @@
                         <TableView fx:id="tbl_archive" prefHeight="300.0" prefWidth="600.0">
                           <columns>
                             <TableColumn fx:id="col_archive_date" prefWidth="90.0" text="Data" />
-                            <TableColumn fx:id="col_archive_range" prefWidth="220.0" text="Pasmo" />
-                              <TableColumn fx:id="col_archive_peak" prefWidth="200.0" text="Szczyt" />
+                            <TableColumn fx:id="col_archive_range" prefWidth="220.0" text="Pasma górskie" />
+                              <TableColumn fx:id="col_archive_peak" prefWidth="200.0" text="Szczyty górskie" />
                               <TableColumn fx:id="col_archive_height" minWidth="6.0" prefWidth="90.0" text="Wysokość" />
                           </columns>
                         </TableView>
@@ -75,9 +75,10 @@
                      <children>
                         <TableView fx:id="tbl_badge" prefHeight="300.0" prefWidth="600.0">
                            <columns>
-                              <TableColumn fx:id="col_badge_range" prefWidth="273.0" text="Pasmo" />
-                              <TableColumn fx:id="col_badge_peak" prefWidth="147.0" text="Liczba szczytów" />
-                              <TableColumn fx:id="col_badge_degrees" minWidth="6.0" prefWidth="178.0" text="Odznaki" />
+                              <TableColumn fx:id="col_badge_chain" prefWidth="124.0" text="Łańcuchy górskie" />
+                              <TableColumn fx:id="col_badge_range" prefWidth="183.0" text="Pasma górskie" />
+                              <TableColumn fx:id="col_badge_peak" prefWidth="93.0" text="Liczba szczytów" />
+                              <TableColumn fx:id="col_badge_degrees" minWidth="6.0" prefWidth="199.0" text="Odznaki" />
                            </columns>
                         </TableView>
                         <Label layoutX="12.0" layoutY="303.0" prefHeight="39.0" prefWidth="578.0" text="* Powyższa tabela prezentuje stopnie odznak górskich, które możesz posiadać po zgłoszeniu się&#10;   do odpowiednich klubów" />

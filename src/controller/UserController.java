@@ -92,6 +92,8 @@ public class UserController {
     @FXML
     private TableView<Badges> tbl_badge;
     @FXML
+    private TableColumn<Badges, String> col_badge_chain;
+    @FXML
     private TableColumn<Badges, String> col_badge_range;
     @FXML
     private TableColumn<Badges, String> col_badge_peak;
@@ -527,7 +529,7 @@ public class UserController {
                 "JOIN osiagniecia ON pasma_szczyty_id_pasma_szczyty = id_pasma_szczyty "+
                 "JOIN pasma_gorskie ON pasma_gorskie_id_pasma_gorskie = id_pasma_gorskie "+
                 "JOIN uzytkownicy on osiagniecia.uzytkownicy_id_uzytkownicy = uzytkownicy.id_uzytkownicy "+
-                "WHERE uzytkownicy_id_uzytkownicy = ?");
+                "WHERE uzytkownicy_id_uzytkownicy = ? ORDER BY data_wycieczki DESC");
         ps.setInt(1, LoginController.id_user);
         ResultSet result = ps.executeQuery();
         while (result.next()) {
@@ -547,27 +549,31 @@ public class UserController {
     }
 
     private void globalBadgeSelect() throws SQLException {
-//        badgeList.clear();
-//        db = new DBConnect();
-//        Connection conn = db.getConn();
-//        ps = conn.prepareStatement("SELECT * FROM zdobyte_odznaki "+
-//                "JOIN uzytkownicy on osiagniecia.uzytkownicy_id_uzytkownicy = uzytkownicy.id_uzytkownicy "+
-//                "WHERE uzytkownicy_id_uzytkownicy = ?");
-//
-//        ps.setInt(1, LoginController.id_user);
-//        ResultSet result = ps.executeQuery();
-//        while (result.next()) {
-//            Badges badges = new Badges(
-//                    result.getString("nazwa_pasma"),
-//                    result.getString("liczba_szczytow"),
-//                    result.getString("stopnie_odznak"));
-//            badgeList.add(badges);
-//        }
-//        //wypełnienie zawartości TabeleView
-//        col_badge_range.setCellValueFactory(new PropertyValueFactory<Badges, String>("nazwa_pasma"));
-//        col_badge_peak.setCellValueFactory(new PropertyValueFactory<Badges, String>("liczba_szczytow"));
-//        col_badge_degrees.setCellValueFactory(new PropertyValueFactory<Badges, String>("stopnie_odznak"));
-//        tbl_badge.setItems(badgeList);
+        badgeList.clear();
+        db = new DBConnect();
+        Connection conn = db.getConn();
+        ps = conn.prepareStatement("SELECT nazwa as lancuchy_gorskie, nazwa_pasma, count(distinct nazwa_szczytu) as liczba_szczytow "+
+                "FROM osiagniecia "+
+                "JOIN uzytkownicy ON (osiagniecia.uzytkownicy_id_uzytkownicy = uzytkownicy.id_uzytkownicy) "+
+                "JOIN pasma_szczyty ON (pasma_szczyty.id_pasma_szczyty = osiagniecia.pasma_szczyty_id_pasma_szczyty) "+
+                "JOIN pasma_gorskie ON (pasma_gorskie.id_pasma_gorskie = pasma_szczyty.pasma_gorskie_id_pasma_gorskie) "+
+                "JOIN lancuchy_gorskie ON (lancuchy_gorskie.id_lancuchy_gorskie = pasma_gorskie.lancuchy_gorskie_id_lancuchy_gorskie) "+
+                "where uzytkownicy_id_uzytkownicy = ? group by pasma_gorskie_id_pasma_gorskie");
+        ps.setInt(1, LoginController.id_user);
+        ResultSet result = ps.executeQuery();
+        while (result.next()) {
+            Badges badges = new Badges(
+                    result.getString("lancuchy_gorskie"),
+                    result.getString("nazwa_pasma"),
+                    result.getString("liczba_szczytow"));
+            badgeList.add(badges);
+        }
+        //wypełnienie zawartości TabeleView
+        col_badge_chain.setCellValueFactory(new PropertyValueFactory<Badges, String>("lancuchy_gorskie"));
+        col_badge_range.setCellValueFactory(new PropertyValueFactory<Badges, String>("nazwa_pasma"));
+        col_badge_peak.setCellValueFactory(new PropertyValueFactory<Badges, String>("liczba_szczytow"));
+        //col_badge_degrees.setCellValueFactory(new PropertyValueFactory<Badges, String>("odznaki"));
+        tbl_badge.setItems(badgeList);
     }
 
     public void initialize() throws SQLException {
