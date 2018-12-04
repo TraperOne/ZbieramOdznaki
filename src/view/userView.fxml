@@ -56,9 +56,9 @@
                         <TableView fx:id="tbl_archive" prefHeight="300.0" prefWidth="600.0">
                           <columns>
                             <TableColumn fx:id="col_archive_date" prefWidth="90.0" text="Data" />
-                            <TableColumn fx:id="col_archive_range" prefWidth="220.0" text="Pasma górskie" />
-                              <TableColumn fx:id="col_archive_peak" prefWidth="200.0" text="Szczyty górskie" />
-                              <TableColumn fx:id="col_archive_height" minWidth="6.0" prefWidth="90.0" text="Wysokość" />
+                            <TableColumn fx:id="col_archive_range" prefWidth="210.0" text="Pasma górskie" />
+                              <TableColumn fx:id="col_archive_peak" prefWidth="210.0" text="Szczyty górskie" />
+                              <TableColumn fx:id="col_archive_height" prefWidth="89.0" text="Wysokość" />
                           </columns>
                         </TableView>
                         <Button fx:id="btn_delete" layoutX="415.0" layoutY="306.0" mnemonicParsing="false" onMouseClicked="#deleteAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: firebrick;" text="Usuń Wycieczkę" textFill="WHITE">
@@ -69,19 +69,36 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-            <Tab style="-fx-background-color: firebrick; -fx-text-base-color: white;" text="Twoje odznaki">
+            <Tab style="-fx-background-color: firebrick; -fx-text-base-color: white;" text="Korony Pojedynczych Pasm">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                      <children>
                         <TableView fx:id="tbl_badge" prefHeight="300.0" prefWidth="600.0">
                            <columns>
-                              <TableColumn fx:id="col_badge_chain" prefWidth="125.0" text="Łańcuchy górskie" />
-                              <TableColumn fx:id="col_badge_range" prefWidth="180.0" text="Pasma górskie" />
+                              <TableColumn fx:id="col_badge_chain" prefWidth="145.0" text="Łańcuchy górskie" />
+                              <TableColumn fx:id="col_badge_range" prefWidth="160.0" text="Pasma górskie" />
                               <TableColumn fx:id="col_badge_peak" prefWidth="94.0" text="Liczba szczytów" />
-                              <TableColumn fx:id="col_badge_degrees" prefWidth="200.0" text="Odznaki" />
+                              <TableColumn fx:id="col_badge_degrees" prefWidth="200.0" text="Zdobyte odznaki" />
                            </columns>
                         </TableView>
-                        <Label layoutX="12.0" layoutY="303.0" prefHeight="39.0" prefWidth="578.0" text="* Powyższa tabela prezentuje stopnie odznak górskich, które możesz posiadać po zgłoszeniu się&#10;   do odpowiednich klubów" />
+                        <Label layoutX="12.0" layoutY="303.0" prefHeight="39.0" prefWidth="578.0" text="* Powyższa tabela prezentuje stopnie odznak górskich, które możesz otrzymać po zgłoszeniu się&#10;   do odpowiedniego klubu zdobywców." />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab style="-fx-background-color: firebrick; -fx-text-base-color: white;" text="Korona Gór Polski">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
+                     <children>
+                        <TableView fx:id="tbl_badge_kgp" prefHeight="300.0" prefWidth="600.0">
+                           <columns>
+                              <TableColumn fx:id="col_badge_kgp_range" prefWidth="200.0" text="Pasma górskie" />
+                              <TableColumn fx:id="col_badge_kgp_peak" prefWidth="200.0" text="Szczyty górskie" />
+                              <TableColumn fx:id="col_badge_kgp_height" prefWidth="96.0" text="Wysokość" />
+                              <TableColumn fx:id="col_badge_kgp_gain" prefWidth="104.0" text="Zdobyte szczyty" />
+                           </columns>
+                        </TableView>
+                        <Label layoutX="12.0" layoutY="303.0" prefHeight="39.0" prefWidth="578.0" text="* Powyższa tabela prezentuje zdobyte szczyty z 28 zaliczanych do otrzymania odznaki. Przed rozpoczęciem&#10;  starania się o odznakę należy zapisać się do odpowiedniego klubu." textFill="RED" />
                      </children>
                   </AnchorPane>
                </content>

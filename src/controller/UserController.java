@@ -100,8 +100,21 @@ public class UserController {
     @FXML
     private TableColumn<Badges, String> col_badge_degrees;
 
+    ObservableList<Badges> badgekgpList = FXCollections.observableArrayList();
+    @FXML
+    private TableView<?> tbl_badge_kgp;
+    @FXML
+    private TableColumn<?, ?> col_badge_kgp_range;
+    @FXML
+    private TableColumn<?, ?> col_badge_kgp_peak;
+    @FXML
+    private TableColumn<?, ?> col_badge_kgp_height;
+    @FXML
+    private TableColumn<?, ?> col_badge_kgp_gain;
+
     @FXML
     private Button btn_delete;
+
 
     private StringExpression tf_login;
 
@@ -573,7 +586,7 @@ public class UserController {
         col_badge_chain.setCellValueFactory(new PropertyValueFactory<>("lancuchy_gorskie"));
         col_badge_range.setCellValueFactory(new PropertyValueFactory<>("nazwa_pasma"));
         col_badge_peak.setCellValueFactory(new PropertyValueFactory<>("liczba_szczytow"));
-        //col_badge_degrees.setCellValueFactory(new PropertyValueFactory<Badges, String>("stopnie_odznak"));
+        //col_badge_degrees.setCellValueFactory(new PropertyValueFactory<>("stopnie_odznak"));
         tbl_badge.setItems(badgeList);
     }
 

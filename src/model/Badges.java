@@ -1,17 +1,29 @@
 package model;
 
 public class Badges {
+    private String lancuchy_gorskie;
     private String nazwa_pasma;
     private String liczba_szczytow;
-    private String odznaki;
+    //private String stopnie_odznak;
 
-    public Badges(String nazwa_pasma, String liczba_szczytow, String odznaki) {
-        this.nazwa_pasma = nazwa_pasma;
-        this.liczba_szczytow = liczba_szczytow;
-        this.odznaki = odznaki;
+    public Badges() {
+
     }
 
-    public Badges() {   }
+    public Badges(String lancuchy_gorskie, String nazwa_pasma, String liczba_szczytow) { //String stopnie_odznak) {
+        this.lancuchy_gorskie = lancuchy_gorskie;
+        this.nazwa_pasma = nazwa_pasma;
+        this.liczba_szczytow = liczba_szczytow;
+        //this.stopnie_odznak = stopnie_odznak;
+    }
+
+    public String getLancuchy_gorskie() {
+        return lancuchy_gorskie;
+    }
+
+    public void setLancuchy_gorskie(String lancuchy_gorskie) {
+        this.lancuchy_gorskie = lancuchy_gorskie;
+    }
 
     public String getNazwa_pasma() {
         return nazwa_pasma;
@@ -29,11 +41,11 @@ public class Badges {
         this.liczba_szczytow = liczba_szczytow;
     }
 
-    public String getOdznaki() {
-        return odznaki;
-    }
+   //public String getStopnie_odznak() {
+       // return stopnie_odznak;
+    //}
 
-    public void setOdznaki(String odznaki) {
-        this.odznaki = odznaki;
-    }
+   // public void setStopnie_odznak(String stopnie_odznak) {
+       // this.stopnie_odznak = stopnie_odznak;
+   // }
 }
