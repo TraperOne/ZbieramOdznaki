@@ -4,17 +4,17 @@ public class Badges {
     private String lancuchy_gorskie;
     private String nazwa_pasma;
     private String liczba_szczytow;
-    //private String stopnie_odznak;
+    private String stopnie_odznak;
 
     public Badges() {
 
     }
 
-    public Badges(String lancuchy_gorskie, String nazwa_pasma, String liczba_szczytow) { //String stopnie_odznak) {
+    public Badges(String lancuchy_gorskie, String nazwa_pasma, String liczba_szczytow, String stopnie_odznak) {
         this.lancuchy_gorskie = lancuchy_gorskie;
         this.nazwa_pasma = nazwa_pasma;
         this.liczba_szczytow = liczba_szczytow;
-        //this.stopnie_odznak = stopnie_odznak;
+        this.stopnie_odznak = stopnie_odznak;
     }
 
     public String getLancuchy_gorskie() {
@@ -41,11 +41,11 @@ public class Badges {
         this.liczba_szczytow = liczba_szczytow;
     }
 
-   //public String getStopnie_odznak() {
-       // return stopnie_odznak;
-    //}
+    public String getStopnie_odznak() {
+        return stopnie_odznak;
+    }
 
-   // public void setStopnie_odznak(String stopnie_odznak) {
-       // this.stopnie_odznak = stopnie_odznak;
-   // }
+    public void setStopnie_odznak(String stopnie_odznak) {
+        this.stopnie_odznak = stopnie_odznak;
+    }
 }

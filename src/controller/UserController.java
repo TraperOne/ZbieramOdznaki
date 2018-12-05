@@ -568,7 +568,6 @@ public class UserController {
         Connection conn = db.getConn();
         ps = conn.prepareStatement("SELECT nazwa AS lancuchy_gorskie, nazwa_pasma, count(distinct nazwa_szczytu) AS liczba_szczytow "+
                 "FROM osiagniecia "+
-                "JOIN uzytkownicy ON (osiagniecia.uzytkownicy_id_uzytkownicy = uzytkownicy.id_uzytkownicy) "+
                 "JOIN pasma_szczyty ON (pasma_szczyty.id_pasma_szczyty = osiagniecia.pasma_szczyty_id_pasma_szczyty) "+
                 "JOIN pasma_gorskie ON (pasma_gorskie.id_pasma_gorskie = pasma_szczyty.pasma_gorskie_id_pasma_gorskie) "+
                 "JOIN lancuchy_gorskie ON (lancuchy_gorskie.id_lancuchy_gorskie = pasma_gorskie.lancuchy_gorskie_id_lancuchy_gorskie) "+
@@ -579,44 +578,42 @@ public class UserController {
             Badges badges = new Badges(
                     result.getString("lancuchy_gorskie"),
                     result.getString("nazwa_pasma"),
-                    result.getString("liczba_szczytow"));
-                    //result.getString("stopnie_odznak"));
+                    result.getString("liczba_szczytow"),
+                    result.getString("stopnie_odznak"));
             badgeList.add(badges);
         }
         //wypełnienie zawartości TabeleView
         col_badge_chain.setCellValueFactory(new PropertyValueFactory<>("lancuchy_gorskie"));
         col_badge_range.setCellValueFactory(new PropertyValueFactory<>("nazwa_pasma"));
         col_badge_peak.setCellValueFactory(new PropertyValueFactory<>("liczba_szczytow"));
-        //col_badge_degrees.setCellValueFactory(new PropertyValueFactory<>("stopnie_odznak"));
+        col_badge_degrees.setCellValueFactory(new PropertyValueFactory<>("stopnie_odznak"));
         tbl_badge.setItems(badgeList);
     }
     private void globalBadgekgpSelect() throws SQLException {
         badgeList.clear();
         db = new DBConnect();
         Connection conn = db.getConn();
-        ps = conn.prepareStatement("SELECT nazwa AS lancuchy_gorskie, nazwa_pasma, count(distinct nazwa_szczytu) AS liczba_szczytow "+
-                "FROM osiagniecia "+
-                "JOIN uzytkownicy ON (osiagniecia.uzytkownicy_id_uzytkownicy = uzytkownicy.id_uzytkownicy) "+
-                "JOIN pasma_szczyty ON (pasma_szczyty.id_pasma_szczyty = osiagniecia.pasma_szczyty_id_pasma_szczyty) "+
+        ps = conn.prepareStatement("SELECT nazwa_pasma, nazwa_szczytu, wysokosc, kgp AS zdobyte_szczyty "+
+                "FROM pasma_szczyty "+
                 "JOIN pasma_gorskie ON (pasma_gorskie.id_pasma_gorskie = pasma_szczyty.pasma_gorskie_id_pasma_gorskie) "+
-                "JOIN lancuchy_gorskie ON (lancuchy_gorskie.id_lancuchy_gorskie = pasma_gorskie.lancuchy_gorskie_id_lancuchy_gorskie) "+
-                "WHERE uzytkownicy_id_uzytkownicy = ? GROUP BY pasma_gorskie_id_pasma_gorskie");
+                "JOIN osiagniecia ON osiagniecia.pasma_szczyty_id_pasma_szczyty = pasma_szczyty.id_pasma_szczyty "+
+                "WHERE uzytkownicy_id_uzytkownicy = ? HAVING kgp != 'N'");
         ps.setInt(1, LoginController.id_user);
         ResultSet result = ps.executeQuery();
         while (result.next()) {
             BadgeKgp badgeKgp = new BadgeKgp(
                     result.getString("nazwa_pasma"),
                     result.getString("nazwa_szczytu"),
-                    result.getString("wysokosc"));
-            //result.getString("zdobyte_szczyty"));
+                    result.getString("wysokosc"),
+                    result.getString("zdobyte_szczyty"));
             badgekgpList.add(badgeKgp);
         }
         //wypełnienie zawartości TabeleView
-        col_badge_chain.setCellValueFactory(new PropertyValueFactory<>("nazwa_pasma"));
-        col_badge_range.setCellValueFactory(new PropertyValueFactory<>("nazwa_szczytu"));
-        col_badge_peak.setCellValueFactory(new PropertyValueFactory<>("wysokosc"));
-        //col_badge_degrees.setCellValueFactory(new PropertyValueFactory<>("zdobyte_szczyty"));
-        tbl_badge.setItems(badgeList);
+        col_badge_kgp_range.setCellValueFactory(new PropertyValueFactory<>("nazwa_pasma"));
+        col_badge_kgp_peak.setCellValueFactory(new PropertyValueFactory<>("nazwa_szczytu"));
+        col_badge_kgp_height.setCellValueFactory(new PropertyValueFactory<>("wysokosc"));
+        col_badge_kgp_gain.setCellValueFactory(new PropertyValueFactory<>("zdobyte_szczyty"));
+        tbl_badge_kgp.setItems(badgekgpList);
     }
     public void initialize() throws SQLException {
         globalArchiveSelect();
