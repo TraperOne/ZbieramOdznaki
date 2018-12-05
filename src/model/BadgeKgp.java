@@ -3,16 +3,16 @@ package model;
 public class BadgeKgp {
 
     private String nazwa_pasma;
-    private String liczba_szczytow;
+    private String nazwa_szczytu;
     private String wysokosc;
     private String zdobyte_szczyty;
 
     public BadgeKgp() {
     }
 
-    public BadgeKgp(String nazwa_pasma, String liczba_szczytow, String wysokosc, String zdobyte_szczyty) {
+    public BadgeKgp(String nazwa_pasma, String nazwa_szczytu, String wysokosc, String zdobyte_szczyty) {
         this.nazwa_pasma = nazwa_pasma;
-        this.liczba_szczytow = liczba_szczytow;
+        this.nazwa_szczytu = nazwa_szczytu;
         this.wysokosc = wysokosc;
         this.zdobyte_szczyty = zdobyte_szczyty;
     }
@@ -25,12 +25,12 @@ public class BadgeKgp {
         this.nazwa_pasma = nazwa_pasma;
     }
 
-    public String getLiczba_szczytow() {
-        return liczba_szczytow;
+    public String getNazwa_szczytu() {
+        return nazwa_szczytu;
     }
 
-    public void setLiczba_szczytow(String liczba_szczytow) {
-        this.liczba_szczytow = liczba_szczytow;
+    public void setNazwa_szczytu(String nazwa_szczytu) {
+        this.nazwa_szczytu = nazwa_szczytu;
     }
 
     public String getWysokosc() {

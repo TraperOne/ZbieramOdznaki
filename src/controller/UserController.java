@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.ArchiveTrip;
+import model.BadgeKgp;
 import model.Badges;
 import service.DBConnect;
 import service.DialogWindow;
@@ -100,17 +101,17 @@ public class UserController {
     @FXML
     private TableColumn<Badges, String> col_badge_degrees;
 
-    ObservableList<Badges> badgekgpList = FXCollections.observableArrayList();
+    ObservableList<BadgeKgp> badgekgpList = FXCollections.observableArrayList();
     @FXML
-    private TableView<?> tbl_badge_kgp;
+    private TableView<BadgeKgp> tbl_badge_kgp;
     @FXML
-    private TableColumn<?, ?> col_badge_kgp_range;
+    private TableColumn<BadgeKgp, String> col_badge_kgp_range;
     @FXML
-    private TableColumn<?, ?> col_badge_kgp_peak;
+    private TableColumn<BadgeKgp, String> col_badge_kgp_peak;
     @FXML
-    private TableColumn<?, ?> col_badge_kgp_height;
+    private TableColumn<BadgeKgp, String> col_badge_kgp_height;
     @FXML
-    private TableColumn<?, ?> col_badge_kgp_gain;
+    private TableColumn<BadgeKgp, String> col_badge_kgp_gain;
 
     @FXML
     private Button btn_delete;
@@ -589,10 +590,38 @@ public class UserController {
         //col_badge_degrees.setCellValueFactory(new PropertyValueFactory<>("stopnie_odznak"));
         tbl_badge.setItems(badgeList);
     }
-
+    private void globalBadgekgpSelect() throws SQLException {
+        badgeList.clear();
+        db = new DBConnect();
+        Connection conn = db.getConn();
+        ps = conn.prepareStatement("SELECT nazwa AS lancuchy_gorskie, nazwa_pasma, count(distinct nazwa_szczytu) AS liczba_szczytow "+
+                "FROM osiagniecia "+
+                "JOIN uzytkownicy ON (osiagniecia.uzytkownicy_id_uzytkownicy = uzytkownicy.id_uzytkownicy) "+
+                "JOIN pasma_szczyty ON (pasma_szczyty.id_pasma_szczyty = osiagniecia.pasma_szczyty_id_pasma_szczyty) "+
+                "JOIN pasma_gorskie ON (pasma_gorskie.id_pasma_gorskie = pasma_szczyty.pasma_gorskie_id_pasma_gorskie) "+
+                "JOIN lancuchy_gorskie ON (lancuchy_gorskie.id_lancuchy_gorskie = pasma_gorskie.lancuchy_gorskie_id_lancuchy_gorskie) "+
+                "WHERE uzytkownicy_id_uzytkownicy = ? GROUP BY pasma_gorskie_id_pasma_gorskie");
+        ps.setInt(1, LoginController.id_user);
+        ResultSet result = ps.executeQuery();
+        while (result.next()) {
+            BadgeKgp badgeKgp = new BadgeKgp(
+                    result.getString("nazwa_pasma"),
+                    result.getString("nazwa_szczytu"),
+                    result.getString("wysokosc"));
+            //result.getString("zdobyte_szczyty"));
+            badgekgpList.add(badgeKgp);
+        }
+        //wypełnienie zawartości TabeleView
+        col_badge_chain.setCellValueFactory(new PropertyValueFactory<>("nazwa_pasma"));
+        col_badge_range.setCellValueFactory(new PropertyValueFactory<>("nazwa_szczytu"));
+        col_badge_peak.setCellValueFactory(new PropertyValueFactory<>("wysokosc"));
+        //col_badge_degrees.setCellValueFactory(new PropertyValueFactory<>("zdobyte_szczyty"));
+        tbl_badge.setItems(badgeList);
+    }
     public void initialize() throws SQLException {
         globalArchiveSelect();
         whereHaveYouBeen();
         globalBadgeSelect();
+        globalBadgekgpSelect();
     }
 }
